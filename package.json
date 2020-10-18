@@ -1,0 +1,28 @@
+{
+  "name": "leftoversfinal",
+  "version": "1.0.0",
+  "description": "App utilizing inputs to search through APIs for Recipe to be displayed",
+  "main": "leftovers.js",
+  "scripts": {
+    "test": "mocha",
+    "cucumber" : "cucumber-js ./features -r ./steps"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sfuller0408/LeftoversFinal.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sfuller0408/LeftoversFinal/issues"
+  },
+  "homepage": "https://github.com/sfuller0408/LeftoversFinal#readme",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "express": "^4.17.1",
+    "mocha": "^8.2.0"
+  },
+  "devDependencies": {
+    "cucumber": "^7.0.0-rc.0"
+  }
+}
