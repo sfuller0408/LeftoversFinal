@@ -5,6 +5,19 @@ if (port == null || port == "") {
     port = 80;
 }
 
+// Create database to hold results
+const sqlite3 = require('sqlite3').verbose();
+let db = new sqlite3.Database("./leftovers.db",
+  sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
+  (err) => {
+    if (err) {
+      console.error(err.message);
+    } else {
+    console.log("Connected to db");
+    }
+  }
+);
+
 function home(req, res) {
     res.render('search');
 }
