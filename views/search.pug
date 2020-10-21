@@ -1,15 +1,17 @@
 html
-    head
-        title=leftovers
-        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
-        script(src="/search.js")
-        // connect style sheet to right align calc and create red header.
-        link(rel="stylesheet", href="/home/search.css")
-    body
-        h1 Leftovers
-        label Desired Ingredient:  
-        input(type="text")#searchBar
-        input(type="button", value="Search")#search
-        br
-        
+    div(class="background")
+        head
+            title=SearchPage
+            script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+            script(src="/search.js")
+            link(rel="stylesheet", href="/home/search.css")
+        body
+            h1 Leftovers
+            div(class="searchContainer")
+                label Enter the Ingredient you would like to include:
+                br
+                input(type="text", placeholder="Desired Ingredient")#searchBar
+                input(type="button", value="Search")#search
+                br
+            
         
