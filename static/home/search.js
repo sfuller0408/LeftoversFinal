@@ -1,6 +1,18 @@
-/**
- * Shows js for home page loaded.
- */
 console.log("Hello world");
 
-$(document).ready(window.location.replace());
+function send(ingredient) {
+    let url = "/search/ingredient/" + ingredient;
+    console.log(url);
+    window.location.replace(url);
+}
+
+function doSearch() {
+    let ingredient = $("#searchBar").val();
+    send(ingredient);
+}
+
+function beginSearch() {
+    $("#search").click(doSearch);
+}
+
+$(document).ready(beginSearch);

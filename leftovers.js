@@ -35,6 +35,10 @@ app.get('/', (req, res) => {
     home(req, res);
 });
 
+app.get('/search/ingredient/:ingredient', (req, res) => {
+    home(req, res);
+});
+
 app.get('/signIn', (req, res) => {
     signIn(req, res);
 });
