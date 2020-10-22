@@ -1,0 +1,14 @@
+h1 {
+  text-align: center;
+  color: black;
+}
+
+#recipeName {
+  position: relative;
+  text-align: left;
+  color: blue;
+}
+
+.background {
+  background-color: #b4b4b4;
+}
