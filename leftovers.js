@@ -27,7 +27,7 @@ function signIn(req, res) {
 }
 
 function displayResults(req, res) {
-  res.render('results');
+    res.render('results');
 }
 
 // Set up the handlers for Node.js
@@ -40,16 +40,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/search/ingredient/:ingredient', (req, res) => {
-    home(req, res);
+    displayResults(req, res);
 });
 
 app.get('/signIn', (req, res) => {
     signIn(req, res);
 });
 
-app.get('/display', (req, res) => {
-  displayResults(req, res);
-});
 
 // Start Express listening at the given port
 app.listen(port, () => {
