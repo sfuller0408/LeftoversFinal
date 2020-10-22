@@ -26,6 +26,10 @@ function signIn(req, res) {
     res.render('signIn');
 }
 
+function displayResults(req, res) {
+  res.render('results');
+}
+
 // Set up the handlers for Node.js
 app.use(express.static("static"));      // static files live in "static" folder
 app.set('views', './views');
@@ -37,6 +41,10 @@ app.get('/', (req, res) => {
 
 app.get('/signIn', (req, res) => {
     signIn(req, res);
+});
+
+app.get('/display', (req, res) => {
+  displayResults(req, res);
 });
 
 // Start Express listening at the given port
