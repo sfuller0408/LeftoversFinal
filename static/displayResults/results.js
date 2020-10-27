@@ -3,4 +3,4 @@
  */
 console.log("Hello world");
 
-$(document).ready(window.location.replace());
+$(document).ready();
