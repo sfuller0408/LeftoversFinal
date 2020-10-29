@@ -30,6 +30,7 @@ function signIn(req, res) {
 
 function displayResults(req, res) {
     let url = "https://edamam-recipe-search.p.rapidapi.com/search";
+    let recipeList = [];
     axios({
         "method" : "GET",
         "url" : url,
@@ -43,7 +44,7 @@ function displayResults(req, res) {
             "q" : req.params.ingredients
         }
     }).then((response) => {
-     let resultList = response.data.hits;
+        let resultList = response.data.hits;
      let recipeList = {
        "recipes": resultList
      };
