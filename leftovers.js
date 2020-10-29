@@ -30,7 +30,6 @@ function signIn(req, res) {
 
 function displayResults(req, res) {
     let url = "https://edamam-recipe-search.p.rapidapi.com/search";
-    let recipeList = [];
     axios({
         "method" : "GET",
         "url" : url,
@@ -44,11 +43,14 @@ function displayResults(req, res) {
             "q" : req.params.ingredients
         }
     }).then((response) => {
-        recipeList = response.data.hits;
+     let resultList = response.data.hits;
+     let recipeList = {
+       "recipes": resultList
+     };
+     res.render('results', recipeList);
     }).catch((error) => {
         console.error(error);
     });
-    res.render('results');
 }
 
 // Set up the handlers for Node.js

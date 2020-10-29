@@ -8,6 +8,7 @@ html
     body
         h1 Results
         br
-        // input(type="text")#recipeName
-        // br
-                 
+        ul
+          each recipe in recipes
+            li= recipe.recipe.label
+            li= recipe.recipe.ingredientLines
