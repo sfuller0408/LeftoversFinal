@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/sfuller0408/LeftoversFinal#readme",
   "dependencies": {
+    "axios": "^0.21.0",
     "chai": "^4.2.0",
     "express": "^4.17.1",
     "mocha": "^8.2.0",

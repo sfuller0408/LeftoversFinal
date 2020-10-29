@@ -1,5 +1,7 @@
 const express = require('express');
 const app = express();
+const axios = require("axios");
+
 let port = process.env.PORT;
 if (port == null || port == "") {
     port = 80;
@@ -27,6 +29,25 @@ function signIn(req, res) {
 }
 
 function displayResults(req, res) {
+    let url = "https://edamam-recipe-search.p.rapidapi.com/search";
+    let recipeList = [];
+    axios({
+        "method" : "GET",
+        "url" : url,
+        "headers" : {
+            "content-type" :"application/octet-stream",
+            "x-rapidapi-host" : "edamam-recipe-search.p.rapidapi.com",
+            "x-rapidapi-key":"57bbc74ce3mshffb7ba97b1c27f0p18410bjsn9a2bb4c1f4e4",
+            "useQueryString" : true,
+        },
+        "params" : {
+            "q" : req.params.ingredients
+        }
+    }).then((response) => {
+        recipeList = response.data.hits;
+    }).catch((error) => {
+        console.error(error);
+    });
     res.render('results');
 }
 
@@ -39,7 +60,7 @@ app.get('/search', (req, res) => {
     home(req, res);
 });
 
-app.get('/search/ingredient/:ingredient', (req, res) => {
+app.get('/search/ingredients/:ingredients', (req, res) => {
     displayResults(req, res);
 });
 
