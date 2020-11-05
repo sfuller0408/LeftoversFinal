@@ -10,5 +10,10 @@ html
         br
         ul
           each recipe in recipes
-            li= recipe.recipe.label
-            li= recipe.recipe.ingredientLines
+            div(class="card")
+              img(src=recipe.recipe.image)
+              br
+              p= recipe.recipe.ingredientLines.join(" ")
+              br
+              input(type="submit", value= recipe.recipe.label)
+              br

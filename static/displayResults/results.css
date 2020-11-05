@@ -12,3 +12,22 @@ h1 {
 .background {
   background-color: #b4b4b4;
 }
+
+.card {
+  font-family: "Lucida Console";
+  font-weight: bold;
+  text-align: left;
+  box-shadow: 5px 10px 8px;
+  width: 500px;
+  
+}
+
+img {
+  border-radius: 8px;
+  border-style: inset;
+  border-width: 5px;
+}
+
+.recipe {
+  padding: 5px;
+}
