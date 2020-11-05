@@ -1,17 +1,19 @@
 html
-    head
-        title=signIn
-        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
-        script(src="/signIn/signIn.js")
-        link(rel="stylesheet", href="/signIn/signIn.css")
-    body
-        h1 Leftovers
-        label username: 
-        input(type="text")#username
-        br
-        label password: 
-        input(type="text")#password
-        br
-        input(type="button", value="sign in as guest")#guest
-        input(type="button", value="sign in with profile")#profile
+    div(class="background")
+        head
+            title=signIn
+            script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+            script(src="/signIn/signIn.js")
+            link(rel="stylesheet", href="/signIn/signIn.css")
+        body
+            h1 Leftovers
+            label username: 
+            input(type="text")#username
+            br
+            br
+            label password: 
+            input(type="text")#password
+            br
+            input(type="button", value="sign in as guest")#guest
+            input(type="button", value="sign in with profile")#profile
 
