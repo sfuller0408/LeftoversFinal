@@ -8,6 +8,10 @@ function send(ingredients) {
 
 function doSearch() {
     let ingredients = $("#searchBar").val();
+    // Does nothing if ingredients is blank.
+    if (ingredients == "") {
+        return;
+    }
     send(ingredients);
 }
 

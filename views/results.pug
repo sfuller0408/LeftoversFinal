@@ -1,19 +1,19 @@
 html
     div(class="background")
         head
-          title=Results 
-          script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
-          script(src="/displayResults/results.js")
-          link(rel="stylesheet", href="/displayResults/results.css")
+            title=Results 
+            script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+            script(src="/displayResults/results.js")
+            link(rel="stylesheet", href="/displayResults/results.css")
     body
         h1 Results
         br
         ul
-          each recipe in recipes
-            div(class="card")
-              img(src=recipe.recipe.image)
-              br
-              p= recipe.recipe.ingredientLines.join(" ")
-              br
-              input(type="submit", value= recipe.recipe.label)
-              br
+            each recipe in recipes
+                div(class="card")
+                    img(src=recipe.recipe.image)
+                    br
+                    p=recipe.recipe.ingredientLines.join(" ")
+                    br
+                    button(type="button", id=recipe.recipe.shareAs) #{recipe.recipe.label}
+                    br

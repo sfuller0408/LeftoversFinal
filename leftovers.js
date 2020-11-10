@@ -45,13 +45,21 @@ function displayResults(req, res) {
         }
     }).then((response) => {
         let resultList = response.data.hits;
-     let recipeList = {
-       "recipes": resultList
-     };
-     res.render('results', recipeList);
+     res.render('results', {"recipes": resultList});
     }).catch((error) => {
         console.error(error);
     });
+}
+
+function displayRecipe(req, res) {
+    let url = req.params.recipeUrl;
+    let label = req.params.recipeLabel;
+    console.log(url);
+    let args = {
+        "recipeUrl": url,
+        "recipeLabel": label
+    };
+    res.render('recipe', args);
 }
 
 // Set up the handlers for Node.js
@@ -65,6 +73,11 @@ app.get('/search', (req, res) => {
 
 app.get('/search/ingredients/:ingredients', (req, res) => {
     displayResults(req, res);
+});
+
+app.get('/search/ingredients/:ingredients/result/:recipeLabel/:recipeUrl',
+    (req, res) => {
+        displayRecipe(req, res);
 });
 
 app.get('/', (req, res) => {

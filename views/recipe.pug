@@ -1,0 +1,13 @@
+html
+    div(class="background")
+        head
+            title=Recipe 
+            script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+            script(src="/displayRecipe/recipe.js")
+            link(rel="stylesheet", href="/displayRecipe/recipe.css")
+        body
+            h1 #{recipeLabel}
+            div(class="recipeInstructions")
+                iframe(height="90%", width="100%", src="https://" + recipeUrl)
+                input(type="button", value=" << Back")#back
+                
