@@ -54,7 +54,12 @@ class Leftovers {
         }).then((response) => {
             // Captures the results.
             let resultList = response.data.hits;
-         res.render('results', {"recipes": resultList});
+            
+            if(resultList.length > 0) {
+                res.render('results', {"recipes": resultList});
+            } else {
+                res.render('search', {"errMessage": "No options found!"});
+            }
         }).catch((error) => {
             console.error(error);
         });

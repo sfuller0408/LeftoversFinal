@@ -1,22 +1,28 @@
 console.log("Hello world");
+    
+class SearchPage {
+    SearchPage() {}
+    
+    doSearch() {
+        let ingredients = $("#searchBar").val();
+        // Does nothing if ingredients is blank.
+        if (ingredients == "") {
+            return;
+        }
+        let url = "/search/ingredients/" + ingredients;
+        send(url);
+    }
+}
 
-function send(ingredients) {
-    let url = "/search/ingredients/" + ingredients;
+let webpage = new SearchPage();
+
+function send(url) {
     console.log(url);
     window.location.replace(url);
 }
 
-function doSearch() {
-    let ingredients = $("#searchBar").val();
-    // Does nothing if ingredients is blank.
-    if (ingredients == "") {
-        return;
-    }
-    send(ingredients);
-}
-
 function beginSearch() {
-    $("#search").click(doSearch);
+    $("#search").click(webpage.doSearch);
 }
 
 $(document).ready(beginSearch);
