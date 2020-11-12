@@ -26,6 +26,7 @@
     "sqlite3": "^5.0.0"
   },
   "devDependencies": {
-    "cucumber": "^7.0.0-rc.0"
+    "cucumber": "^7.0.0-rc.0",
+    "sinon": "^9.2.1"
   }
 }

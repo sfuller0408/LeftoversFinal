@@ -4,17 +4,24 @@ h1 {
   font-size: 150px;
 }
 
-body {
-  vertical-align: center;
-}  
+.infoContainer {
+    text-align: center;
+    position: relative;
+}
 
 label {
+    color: blue;
+    font-size: 26px;
     font-weight: bold;
 }
 
 input[type=text] {
     width: 50%;
     height: 40px;
+}
+
+input[type=button] {
+    font-size: 16px;
 }
 
 .background {
