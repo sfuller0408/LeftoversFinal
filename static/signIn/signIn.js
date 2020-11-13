@@ -3,13 +3,18 @@
  */
 console.log("Hello world");
 
-function login() {
-    let url = "/search";
-    window.location.replace(url);
+class signIn {
+    login() {
+        let url = "/search";
+        window.location.replace(url);
+    }
 }
 
-function signIn() {
-    $("#guest").click(login);
+let webpage = new signIn(); 
+
+function doAction() {
+    $("#guest").click(webpage.login);
 }
 
-$(document).ready(signIn);
+
+$(document).ready(doAction);
