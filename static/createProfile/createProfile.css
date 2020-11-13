@@ -1,0 +1,26 @@
+h1 {
+  color:red;
+  text-align: center;
+  font-size: 150px;
+}
+
+body {
+  vertical-align: center;
+}  
+
+label {
+    font-weight: bold;
+}
+
+input[type=text] {
+    width: 70%;
+    height: 40px;
+}
+
+.background {
+  background-image: url('');
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

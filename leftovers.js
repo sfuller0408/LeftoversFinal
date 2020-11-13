@@ -28,6 +28,10 @@ class Leftovers {
         res.render('search');
     }
     
+    createProfile(req, res) {
+        res.render('createProfile');
+    }
+    
     signIn(req, res) {
         res.render('signIn');
     }
@@ -96,6 +100,10 @@ app.get('/search/ingredients/:ingredients', (req, res) => {
 app.get('/search/ingredients/:ingredients/result/:recipeLabel/:recipeUrl',
     (req, res) => {
     server.displayRecipe(req, res);
+});
+
+app.get('/createProfile', (req, res) => {
+    server.createProfile(req, res);
 });
 
 app.get('/', (req, res) => {

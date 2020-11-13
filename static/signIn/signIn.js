@@ -8,12 +8,18 @@ class signIn {
         let url = "/search";
         window.location.replace(url);
     }
+    
+    createProfile() {
+        let url = "/createProfile";
+        window.location.replace(url);
+    }
 }
 
 let webpage = new signIn(); 
 
 function doAction() {
     $("#guest").click(webpage.login);
+    $("#createProfile").click(webpage.createProfile);
 }
 
 
