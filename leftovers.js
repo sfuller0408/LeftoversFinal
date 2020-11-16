@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const axios = require("axios");
 
@@ -8,7 +8,7 @@ if (port == null || port == "") {
 }
 
 // Create database to hold results
-const sqlite3 = require('sqlite3').verbose();
+const sqlite3 = require("sqlite3").verbose();
 let db = new sqlite3.Database("./leftovers.db",
   sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
   (err) => {
@@ -25,15 +25,15 @@ class Leftovers {
     Leftovers() {}
     
     home(req, res) {
-        res.render('search');
+        res.render("search");
     }
     
     createProfile(req, res) {
-        res.render('createProfile');
+        res.render("createProfile");
     }
     
     signIn(req, res) {
-        res.render('signIn');
+        res.render("signIn");
     }
     
     displayResults(req, res) {
@@ -60,9 +60,9 @@ class Leftovers {
             let resultList = response.data.hits;
             
             if(resultList.length > 0) {
-                res.render('results', {"recipes": resultList});
+                res.render("results", {"recipes": resultList});
             } else {
-                res.render('search', {"errMessage": "No options found!"});
+                res.render("search", {"errMessage": "No options found!"});
             }
         }).catch((error) => {
             console.error(error);
@@ -72,44 +72,50 @@ class Leftovers {
     displayRecipe(req, res) {
         let url = req.params.recipeUrl;
         let label = req.params.recipeLabel;
-        console.log(url);
+        
         let args = {
             "recipeUrl": url,
             "recipeLabel": label
         };
-        res.render('recipe', args);
+        res.render("recipe", args);
     }
 }
+
+exports.Leftovers = Leftovers;
 
 // Creates Leftovers object.
 let server = new Leftovers();
 
 // Set up the handlers for Node.js
 app.use(express.static("static"));      // static files live in "static" folder
-app.set('views', './views');            // set file to locate templates
-app.set('view engine', 'pug');          // sets view engine as Pug
+app.set("views", "./views");            // set file to locate templates
+app.set("view engine", "pug");          // sets view engine as Pug
 
-app.get('/search', (req, res) => {
+app.get("/search", (req, res) => {
     server.home(req, res);
 });
 
-app.get('/search/ingredients/:ingredients', (req, res) => {
+app.get("/search/ingredients/:ingredients", (req, res) => {
     server.displayResults(req, res);
 });
 
-app.get('/search/ingredients/:ingredients/result/:recipeLabel/:recipeUrl',
-    (req, res) => {
+app.get("/search/ingredients/:ingredients/result/:recipeLabel/:recipeUrl",
+        (req, res) => {
     server.displayRecipe(req, res);
 });
 
-app.get('/createProfile', (req, res) => {
+app.get("/createProfile", (req, res) => {
     server.createProfile(req, res);
 });
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
     server.signIn(req, res);
 });
 
+// Used to test recipe page elements without depending on outside source.
+app.get("/recipe/test", (req, res) => {
+    res.render("testRecipe");
+});
 
 // Start Express listening at the given port
 app.listen(port, () => {
