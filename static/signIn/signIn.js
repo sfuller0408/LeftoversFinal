@@ -1,26 +1,31 @@
-/**
- * Shows js for home page loaded.
- */
-console.log("Hello world");
+console.log("Sign In Page");
 
-class signIn {
-    login() {
-        let url = "/search";
-        window.location.replace(url);
-    }
-    
-    createProfile() {
-        let url = "/createProfile";
+function loginAsGuest() {
+    let url = "/search";
+    if (typeof window == "undefined") {
+        return url;
+    } else {
         window.location.replace(url);
     }
 }
-
-let webpage = new signIn(); 
+    
+ function createProfile() {
+    let url = "/createProfile";
+    if (typeof window == "undefined") {
+        return url;
+    } else {
+        window.location.replace(url);
+    }
+}
 
 function doAction() {
-    $("#guest").click(webpage.login);
-    $("#createProfile").click(webpage.createProfile);
+    $("#guest").click(loginAsGuest);
+    $("#createProfile").click(createProfile);
 }
 
-
-$(document).ready(doAction);
+if (typeof window == "undefined") {
+    exports.loginAsGuest = loginAsGuest;
+    exports.createProfile = createProfile;
+} else {
+    $(document).ready(doAction);
+}

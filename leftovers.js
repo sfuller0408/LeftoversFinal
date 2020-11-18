@@ -24,18 +24,6 @@ let db = new sqlite3.Database("./leftovers.db",
 class Leftovers {
     Leftovers() {}
     
-    home(req, res) {
-        res.render("search");
-    }
-    
-    createProfile(req, res) {
-        res.render("createProfile");
-    }
-    
-    signIn(req, res) {
-        res.render("signIn");
-    }
-    
     displayResults(req, res) {
         // Sets URL for axios API call
         let url = "https://edamam-recipe-search.p.rapidapi.com/search";
@@ -92,7 +80,7 @@ app.set("views", "./views");            // set file to locate templates
 app.set("view engine", "pug");          // sets view engine as Pug
 
 app.get("/search", (req, res) => {
-    server.home(req, res);
+    res.render("search");
 });
 
 app.get("/search/ingredients/:ingredients", (req, res) => {
@@ -105,11 +93,11 @@ app.get("/search/ingredients/:ingredients/result/:recipeLabel/:recipeUrl",
 });
 
 app.get("/createProfile", (req, res) => {
-    server.createProfile(req, res);
+    res.render("createProfile");
 });
 
 app.get("/", (req, res) => {
-    server.signIn(req, res);
+    res.render("signIn");
 });
 
 // Used to test recipe page elements without depending on outside source.

@@ -1,28 +1,25 @@
-console.log("Hello world");
-    
-class SearchPage {
-    SearchPage() {}
-    
-    doSearch() {
-        let ingredients = $("#searchBar").val();
-        // Does nothing if ingredients is blank.
-        if (ingredients == "") {
-            return;
-        }
-        let url = "/search/ingredients/" + ingredients;
-        send(url);
+console.log("Search Page");
+
+function doSearch(ingredients) {
+    if (ingredients == "") {
+        return;
+    }
+    let url = "/search/ingredients/" + ingredients;
+    if (typeof window == "undefined") {
+        return url;
+    } else {
+        window.location.replace(url);
     }
 }
 
-let webpage = new SearchPage();
-
-function send(url) {
-    console.log(url);
-    window.location.replace(url);
-}
-
 function beginSearch() {
-    $("#search").click(webpage.doSearch);
+    $("#search").click(() => {
+        let ingredients = $("#searchBar").val();
+        doSearch(ingredients);
+    });
 }
-
-$(document).ready(beginSearch);
+if (typeof window == "undefined") {
+    exports.doSearch = doSearch;
+} else {
+    $(document).ready(beginSearch);
+}

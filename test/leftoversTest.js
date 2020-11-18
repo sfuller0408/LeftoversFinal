@@ -2,19 +2,18 @@ const chai = require("chai");
 const expect = chai.expect;
 const request = require("request");
 const chaiHttp = require("chai-http");
-const Leftovers = require("../leftovers.js").Leftovers;
 
 let url = "https://tsuleftoversfinal.herokuapp.com";
 
 chai.use(chaiHttp);
 
 // leftovers server unit tests.
-describe("Render pages from Heroku", function() {
+describe("Get pages from Heroku", function() {
     // set timeout for asynchronous calls to prevent timeout fails on first call.
     this.timeout(20000);
     
     // tests get function and signIn(req, res) for signIn page.
-    describe("render Sign In Page", function() {
+    describe("get Sign In Page on Heroku server", function() {
         it("should render page with status of 200",
             function(done) {
                 chai.request(url)
@@ -26,7 +25,7 @@ describe("Render pages from Heroku", function() {
             }
         );
             
-        it("should render page with username, password, and sign in as guest elements",
+        it("should get page with username, password, and sign in as guest elements",
             function(done) {
                 chai.request(url)
                 .get("/")
@@ -41,7 +40,7 @@ describe("Render pages from Heroku", function() {
     });
     
     // tests get function and home(req, res) for home/search page.
-    describe("render Home/Search Page", function() {
+    describe("get Home/Search Page on Heroku server", function() {
         it("should render page with status of 200",
             function(done) {
                 chai.request(url)
@@ -53,7 +52,7 @@ describe("Render pages from Heroku", function() {
             }
         );
         
-        it("should render page with label and heading/button value elements",
+        it("should get page with label and heading/button value elements",
             function(done) {
                 chai.request(url)
                 .get("/search")
@@ -70,7 +69,7 @@ describe("Render pages from Heroku", function() {
     });
     
     // tests get function and displayResults(req, res) for results page.
-    describe("render Results Page", function() {
+    describe("get Results Page on Heroku server", function() {
         it("should render page with status of 200",
             function(done) {
                 chai.request(url)
@@ -82,7 +81,7 @@ describe("Render pages from Heroku", function() {
             }
         );
         
-        it("should render page with title/heading and multiple \"css card\" classes",
+        it("should get page with title/heading and multiple \"css card\" classes",
             function(done) {
                 chai.request(url)
                 .get("/search/ingredients/apples")

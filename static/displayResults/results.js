@@ -1,12 +1,16 @@
-console.log("Hello world");
+console.log("Results Page");
 
 function send(recipeUrl) {
-    let url = window.location.href + recipeUrl;
-    window.location.replace(url);
+    if (typeof window == "undefined") {
+        return "results/" + recipeUrl;
+    } else {
+        let url = window.location.href + recipeUrl;
+        window.location.replace(url);
+    }
 }
 
 function getRecipeUrl() {
-    $("body").on('click', 'button', (tgt) => {
+    $("body").on("click", "button", (tgt) => {
         let recipeUrl = tgt.target.id;
         let recipeLabel = tgt.target.textContent + "/";
         
@@ -21,5 +25,8 @@ function getRecipeUrl() {
     });
 }
 
-
-$(document).ready(getRecipeUrl);
+if (typeof window == "undefined") {
+    exports.send = send;
+} else {
+    $(document).ready(getRecipeUrl);
+}
