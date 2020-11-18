@@ -20,60 +20,49 @@ let db = new sqlite3.Database("./leftovers.db",
   }
 );
 
-// Class to handle all server req and responses.
-class Leftovers {
-    Leftovers() {}
+function displayResults(req, res) {
+    // Sets URL for axios API call
+    let url = "https://edamam-recipe-search.p.rapidapi.com/search";
+    // Creates an empty array to house all recipe objects
+    let recipeList = [];
     
-    displayResults(req, res) {
-        // Sets URL for axios API call
-        let url = "https://edamam-recipe-search.p.rapidapi.com/search";
-        // Creates an empty array to house all recipe objects
-        let recipeList = [];
+    axios({
+        "method" : "GET",
+        "url" : url,
+        "headers" : {
+            "content-type" :"application/octet-stream",
+            "x-rapidapi-host" : "edamam-recipe-search.p.rapidapi.com",
+            "x-rapidapi-key":"57bbc74ce3mshffb7ba97b1c27f0p18410bjsn9a2bb4c1f4e4",
+            "useQueryString" : true,
+        },
+        // Sets the params for the API call
+        "params" : {
+            "q" : req.params.ingredients
+        }
+    }).then((response) => {
+        // Captures the results.
+        let resultList = response.data.hits;
         
-        axios({
-            "method" : "GET",
-            "url" : url,
-            "headers" : {
-                "content-type" :"application/octet-stream",
-                "x-rapidapi-host" : "edamam-recipe-search.p.rapidapi.com",
-                "x-rapidapi-key":"57bbc74ce3mshffb7ba97b1c27f0p18410bjsn9a2bb4c1f4e4",
-                "useQueryString" : true,
-            },
-            // Sets the params for the API call
-            "params" : {
-                "q" : req.params.ingredients
-            }
-        }).then((response) => {
-            // Captures the results.
-            let resultList = response.data.hits;
-            
-            if(resultList.length > 0) {
-                res.render("results", {"recipes": resultList});
-            } else {
-                res.render("search", {"errMessage": "No options found!"});
-            }
-        }).catch((error) => {
-            console.error(error);
-        });
-    }
-    
-    displayRecipe(req, res) {
-        let url = req.params.recipeUrl;
-        let label = req.params.recipeLabel;
-        
-        let args = {
-            "recipeUrl": url,
-            "recipeLabel": label
-        };
-        res.render("recipe", args);
-    }
+        if(resultList.length > 0) {
+            res.render("results", {"recipes": resultList});
+        } else {
+            res.render("search", {"errMessage": "No options found!"});
+        }
+    }).catch((error) => {
+        console.error(error);
+    });
 }
+    
+function displayRecipe(req, res) {
+    let url = req.params.recipeUrl;
+    let label = req.params.recipeLabel;
 
-exports.Leftovers = Leftovers;
-
-// Creates Leftovers object.
-let server = new Leftovers();
-
+    let args = {
+        "recipeUrl": url,
+        "recipeLabel": label
+    };
+    res.render("recipe", args);
+}
 // Set up the handlers for Node.js
 app.use(express.static("static"));      // static files live in "static" folder
 app.set("views", "./views");            // set file to locate templates
@@ -83,14 +72,10 @@ app.get("/search", (req, res) => {
     res.render("search");
 });
 
-app.get("/search/ingredients/:ingredients", (req, res) => {
-    server.displayResults(req, res);
-});
+app.get("/search/ingredients/:ingredients", displayResults);
 
 app.get("/search/ingredients/:ingredients/result/:recipeLabel/:recipeUrl",
-        (req, res) => {
-    server.displayRecipe(req, res);
-});
+        displayRecipe);
 
 app.get("/createProfile", (req, res) => {
     res.render("createProfile");
