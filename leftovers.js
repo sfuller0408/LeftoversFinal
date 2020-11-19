@@ -20,6 +20,44 @@ let db = new sqlite3.Database("./leftovers.db",
   }
 );
 
+// Create tables if it does not exist
+db.run(
+  'CREATE TABLE IF NOT EXISTS Leftovers(username, password, allergies)',
+  [],
+  (err) => {
+    if(err) {
+      console.error(err.message);
+    } else {
+      console.log("Table created");
+    }
+});
+
+function createProfile(req, res) {
+  // Sends user information into the database
+  let userInfo = null;
+  let username = req.params.username;
+  let password = req.params.password;
+  let allergies = req.params.allergies;
+  console.log(" " + username + " " + password + " " + allergies);
+      
+  db.serialize(() => {
+    db.run(
+      'INSERT INTO Leftovers(username, password, allergies) VALUES(?, ?, ?)',
+      [username, password, allergies],
+      [],
+      (err) => {
+        if(err) {
+          console.error(err.message);
+        } else {
+          console.log("Inserted user information = username: "
+              + username + ", password: " + password + ", allergies: " 
+              + allergies + " into database.");
+        }
+      });
+    });
+    res.render('createProfile');
+  }
+
 function displayResults(req, res) {
     // Sets URL for axios API call
     let url = "https://edamam-recipe-search.p.rapidapi.com/search";
@@ -80,6 +118,8 @@ app.get("/search/ingredients/:ingredients/result/:recipeLabel/:recipeUrl",
 app.get("/createProfile", (req, res) => {
     res.render("createProfile");
 });
+
+app.get("/register/username/:username/password/:password/allergies/:allergies", createProfile);
 
 app.get("/", (req, res) => {
     res.render("signIn");
