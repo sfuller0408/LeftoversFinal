@@ -5,23 +5,20 @@ html
             script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
             script(src="/createProfile/createProfile.js")
             link(rel="stylesheet", href="/createProfile/createProfile.css")
-        body
-            h1 Create Profile
-            label username: 
-            input(type="text")#username
-            br
-            br
-            label password: 
-            input(type="text")#password
-            br
-            br
-            label confirm password:
-            input(type="text")#confirmPassword
-            br
-            br
-            label Allergies:
-            input(type="text")#allergies
-            br
-            br
-            input(type="button", value="sign in as guest")#guest
-            input(type="button", value="Register")#register
+        div(class="infoContainer")
+            body
+                h1 Create Profile
+                label username:
+                input(type="text")#username
+                br
+                br
+                label password:
+                input(type="password")#password
+                br
+                br
+                label confirm password:
+                input(type="password")#confirmPassword
+                br
+                br
+                input(type="button", value="sign in as guest")#guest
+                input(type="button", value="Register")#register

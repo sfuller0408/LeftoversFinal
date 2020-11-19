@@ -10,21 +10,21 @@ if (port == null || port == "") {
 // Create database to hold results
 const sqlite3 = require("sqlite3").verbose();
 let db = new sqlite3.Database("./leftovers.db",
-  sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
-  (err) => {
+    sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
+    (err) => {
     if (err) {
       console.error(err.message);
     } else {
-    console.log("Connected to db");
+      console.log("Connected to db");
     }
   }
 );
 
 // Create tables if it does not exist
 db.run(
-  'CREATE TABLE IF NOT EXISTS Leftovers(username, password, allergies)',
-  [],
-  (err) => {
+    'CREATE TABLE IF NOT EXISTS Leftovers(username, password, allergies)',
+    [],
+    (err) => {
     if(err) {
       console.error(err.message);
     } else {
@@ -33,30 +33,52 @@ db.run(
 });
 
 function createProfile(req, res) {
-  // Sends user information into the database
-  let userInfo = null;
-  let username = req.params.username;
-  let password = req.params.password;
-  let allergies = req.params.allergies;
-  console.log(" " + username + " " + password + " " + allergies);
+    // Sends user information into the database
+    let username = req.params.username;
+    let password = req.params.password;
+    // TODO() add ability to input allergies and filter results by allergies
+    let allergies = null;
       
-  db.serialize(() => {
-    db.run(
-      'INSERT INTO Leftovers(username, password, allergies) VALUES(?, ?, ?)',
-      [username, password, allergies],
-      [],
-      (err) => {
-        if(err) {
-          console.error(err.message);
-        } else {
-          console.log("Inserted user information = username: "
-              + username + ", password: " + password + ", allergies: " 
-              + allergies + " into database.");
-        }
-      });
+    db.serialize(() => {
+        db.run(
+            'INSERT INTO Leftovers(username, password, allergies) VALUES(?, ?, ?)',
+            [username, password, allergies],
+            [],
+            (err) => {
+                if(err) {
+                    console.error(err.message);
+                } else {
+                    console.log("Inserted user information = username: "
+                        + username + ", password: " + password + ", allergies: " 
+                        + allergies + " into database.");
+                }
+            }
+        );
     });
-    res.render('createProfile');
+    res.render("signIn");
   }
+  
+function signIn(req, res) {
+    let user = req.params.username;
+    let passwordAttempt = req.params.password;
+    
+    // Retrieves the password for the given user and tests if the password entered
+    // is correct.
+    db.get(
+        'SELECT password pass FROM Leftovers WHERE username = "' + user + '"', 
+        [], 
+        (err, row) => {
+        if (err) {
+            console.error(err.message);
+        } else {
+            if (row.pass == passwordAttempt) {
+                res.render("search");
+            } else {
+                res.render("signIn");
+            }
+        }
+    });
+}
 
 function displayResults(req, res) {
     // Sets URL for axios API call
@@ -64,6 +86,7 @@ function displayResults(req, res) {
     // Creates an empty array to house all recipe objects
     let recipeList = [];
     
+    // Calls Edamam API using params given by user
     axios({
         "method" : "GET",
         "url" : url,
@@ -110,6 +133,10 @@ app.get("/search", (req, res) => {
     res.render("search");
 });
 
+app.get("/:username/:password/search", (req, res) => {
+    signIn(req, res);
+});
+
 app.get("/search/ingredients/:ingredients", displayResults);
 
 app.get("/search/ingredients/:ingredients/result/:recipeLabel/:recipeUrl",
@@ -119,7 +146,7 @@ app.get("/createProfile", (req, res) => {
     res.render("createProfile");
 });
 
-app.get("/register/username/:username/password/:password/allergies/:allergies", createProfile);
+app.get("/register/username/:username/password/:password", createProfile);
 
 app.get("/", (req, res) => {
     res.render("signIn");

@@ -8,6 +8,17 @@ function loginAsGuest() {
         window.location.replace(url);
     }
 }
+
+function loginWithProfile(username, password) {
+    let url = "/" + username + "/" + password + "/search";
+    window.location.replace(url);
+}
+
+function getFields() {
+    let username = $("#username").val();
+    let password = $("#password").val();
+    loginWithProfile(username, password);
+}
     
  function createProfile() {
     let url = "/createProfile";
@@ -21,6 +32,7 @@ function loginAsGuest() {
 function doAction() {
     $("#guest").click(loginAsGuest);
     $("#createProfile").click(createProfile);
+    $("#profile").click(getFields);
 }
 
 if (typeof window == "undefined") {

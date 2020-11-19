@@ -4,12 +4,10 @@ h1 {
   font-size: 150px;
 }
 
-body {
-  vertical-align: center;
-}  
-
 label {
+    font-size: 40;
     font-weight: bold;
+    color: red;
 }
 
 input[type=text] {
@@ -17,8 +15,28 @@ input[type=text] {
     height: 40px;
 }
 
+input[type=button] {
+    font-size: 35px;
+    color: red;
+}
+
+#password {
+    width: 70%;
+    height: 40px;
+}
+
+#confirmPassword {
+    width: 61.5%;
+    height: 40px;
+}
+
+
+.infoContainer {
+    text-align: center;
+}
+
 .background {
-  background-image: url('');
+  background-image: url("CreateProfile.jpeg");
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
