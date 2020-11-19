@@ -17,6 +17,6 @@ When("loginAsGuest is called", function() {
     result = signIn.loginAsGuest();
 });
 
-Then("/search path is returned", function() {
-    expect(result).to.equal("/search");
+Then("{string} path is returned", function(str) {
+    expect(result).to.equal(str);
 });

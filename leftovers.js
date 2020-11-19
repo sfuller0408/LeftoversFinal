@@ -152,11 +152,6 @@ app.get("/", (req, res) => {
     res.render("signIn");
 });
 
-// Used to test recipe page elements without depending on outside source.
-app.get("/recipe/test", (req, res) => {
-    res.render("testRecipe");
-});
-
 // Start Express listening at the given port
 app.listen(port, () => {
     console.log("App running at port=" + port);
