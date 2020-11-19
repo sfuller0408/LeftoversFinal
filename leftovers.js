@@ -57,7 +57,7 @@ function createProfile(req, res) {
     });
     res.render("signIn");
   }
-  
+
 function signIn(req, res) {
     let user = req.params.username;
     let passwordAttempt = req.params.password;
@@ -69,7 +69,9 @@ function signIn(req, res) {
         [], 
         (err, row) => {
         if (err) {
-            console.error(err.message);
+            res.render("signIn", {"status": "That username does not exist."});
+        } if (row == undefined) {
+            res.render("signIn", {"status": "The username you entered does not exist."});
         } else {
             if (row.pass == passwordAttempt) {
                 res.render("search");

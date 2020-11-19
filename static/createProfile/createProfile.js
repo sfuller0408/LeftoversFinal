@@ -11,8 +11,7 @@ function login() {
     window.location.replace(url);
 }
 
-function checkPassword(password) {
-    let confirm = $("#confirmPassword").val();
+function checkPassword(password, confirm) {
     
     if (password == confirm) {
         return true;
@@ -24,11 +23,17 @@ function checkPassword(password) {
 function register() {
     let username = $("#username").val();
     let password = $("#password").val();
+    let confirm = $("#confirmPassword").val();
     
-    if (checkPassword(password)) {
-        send(username, password);
+    if (username == "" || password == "" || confirm == "") {
+        alert("All fields must include an input.");
+        return;
     } else {
-        alert("The Password and Confirm Password fields must match!");
+        if (checkPassword(password, confirm)) {
+            send(username, password);
+        } else {
+            alert("The Password and Confirm Password fields must match!");
+        }
     }
 }
 

@@ -17,7 +17,12 @@ function loginWithProfile(username, password) {
 function getFields() {
     let username = $("#username").val();
     let password = $("#password").val();
-    loginWithProfile(username, password);
+    if (username == "" || password == "") {
+        alert("All fields must have an input.");
+        return;
+    } else {
+        loginWithProfile(username, password);
+    }
 }
     
  function createProfile() {

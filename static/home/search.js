@@ -2,6 +2,7 @@ console.log("Search Page");
 
 function doSearch(ingredients) {
     if (ingredients == "") {
+        alert("Must include an input to search by.");
         return;
     }
     let url = "/search/ingredients/" + ingredients;
