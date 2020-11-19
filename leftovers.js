@@ -74,7 +74,7 @@ function signIn(req, res) {
             if (row.pass == passwordAttempt) {
                 res.render("search");
             } else {
-                res.render("signIn");
+                res.render("signIn", {"status": "The password you entered was incorrect."});
             }
         }
     });
@@ -107,7 +107,7 @@ function displayResults(req, res) {
         if(resultList.length > 0) {
             res.render("results", {"recipes": resultList});
         } else {
-            res.render("search", {"errMessage": "No options found!"});
+            res.render("search", {"status": "No options found! Please try again!"});
         }
     }).catch((error) => {
         console.error(error);

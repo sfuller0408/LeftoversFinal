@@ -10,7 +10,7 @@ label {
     color: red;
 }
 
-input[type=text] {
+input[type=text], #password {
     width: 70%;
     height: 40px;
 }
@@ -18,11 +18,6 @@ input[type=text] {
 input[type=button] {
     font-size: 35px;
     color: red;
-}
-
-#password {
-    width: 70%;
-    height: 40px;
 }
 
 #confirmPassword {

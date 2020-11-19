@@ -12,6 +12,11 @@ body {
     vertical-align: center;
 }
 
+p {
+    font-weight: bold;
+    font-size: 35px;
+}
+
 #searchBar {
     width: 50%;
     height: 30px;

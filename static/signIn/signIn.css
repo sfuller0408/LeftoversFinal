@@ -9,13 +9,19 @@ h1 {
     position: relative;
 }
 
+p {
+    font-weight: bold;
+    font-size: 35px;
+    color: white;
+}
+
 label {
     color: blue;
     font-size: 26px;
     font-weight: bold;
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
     width: 50%;
     height: 40px;
 }
