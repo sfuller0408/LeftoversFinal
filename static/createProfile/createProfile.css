@@ -1,11 +1,15 @@
 h1 {
   color:red;
   text-align: center;
-  font-size: 150px;
+  font-size: 100px;
+  font-family: Comic Sans MS;
+  font-variant: small-caps;
 }
 
 body {
+  background-color: lightgrey;
   vertical-align: center;
+  
 }  
 
 label {
@@ -19,8 +23,12 @@ input[type=text] {
 
 .background {
   background-image: url('');
+  color: red;
   height: 100%;
+  background-color: lightgrey;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  font-family: Comic Sans MS;
+  font-variant: small-caps;
 }
