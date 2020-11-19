@@ -30,9 +30,9 @@ describe("Get pages from Heroku", function() {
                 chai.request(url)
                 .get("/")
                 .end(function(err, res) {
-                    expect(res.text).to.have.string("username: ");
-                    expect(res.text).to.have.string("password: ");
-                    expect(res.text).to.have.string("sign in as guest");
+                    expect(res.text).to.have.string("Username: ");
+                    expect(res.text).to.have.string("Password: ");
+                    expect(res.text).to.have.string("Sign in as Guest");
                     done();
                 });
             }
@@ -60,7 +60,7 @@ describe("Get pages from Heroku", function() {
                     expect(res.text)
                         .to
                         .have
-                        .string("Enter the Ingredient you would like to include:");
+                        .string("Enter the ingredient you would like to include:");
                     expect(res.text).to.have.string("Search");
                     done();
                 });
@@ -105,7 +105,7 @@ describe("Get pages from Heroku", function() {
                      expect(res.text)
                         .to
                         .have
-                        .string("Enter the Ingredient you would like to include:");
+                        .string("Enter the ingredient you would like to include:");
                     expect(res.text).to.have.string("Search");
                     done();
                 });
