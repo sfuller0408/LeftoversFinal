@@ -1,7 +1,7 @@
 h1 {
-  color:red;
-  text-align: center;
-  font-size: 150px;
+    color:red;
+    text-align: center;
+    font-size: 150px;
 }
 
 label {
@@ -36,9 +36,9 @@ input[type=button] {
 }
 
 .background {
-  background-image: url("CreateProfile.jpeg");
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    background-image: url("CreateProfile.jpeg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
