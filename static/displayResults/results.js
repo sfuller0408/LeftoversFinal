@@ -9,11 +9,14 @@ function send(recipeUrl) {
     }
 }
 
+// Handles ALL click actions on page. The target of the click action
+// holds data for the Recipe Label and URL to ShareAs page.
 function getRecipeUrl() {
     $("body").on("click", "button", (tgt) => {
         let recipeUrl = tgt.target.id;
         let recipeLabel = tgt.target.textContent + "/";
         
+        // Used to pass URL as URL parameter.
         if(recipeUrl.includes("https://")) {
             recipeUrl = recipeUrl.replace("https://", "");
         } else if(recipeUrl.includes("http://")) {

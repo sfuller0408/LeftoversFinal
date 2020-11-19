@@ -1,9 +1,14 @@
 console.log("Create Profile");
 
 function send(username, password) {
-  let url = "/register/username/" + username + "/password/" + password;
-  console.log(url);
-  window.location.replace(url);
+    let url = "/register/username/" + username + "/password/" + password;
+    
+    // Returns URL for testing if ran in node.
+    if (typeof window == "undefined") {
+        return url;
+    } else {
+        window.location.replace(url);
+    }
 }
 
 function login() {
@@ -11,8 +16,8 @@ function login() {
     window.location.replace(url);
 }
 
+// Used to ensure password and confirm field match.
 function checkPassword(password, confirm) {
-    
     if (password == confirm) {
         return true;
     } else {
@@ -25,6 +30,8 @@ function register() {
     let password = $("#password").val();
     let confirm = $("#confirmPassword").val();
     
+    // If any of the required fields are not filled, alerts the user
+    // and exits out of function.
     if (username == "" || password == "" || confirm == "") {
         alert("All fields must include an input.");
         return;
@@ -42,4 +49,9 @@ function setup() {
   $("#register").click(register);
 }
 
-$(document).ready(setup);
+// Defines if app is running in node or browser.
+if (typeof window == "undefined") {
+    exports.send = send;
+} else {
+    $(document).ready(setup);
+}

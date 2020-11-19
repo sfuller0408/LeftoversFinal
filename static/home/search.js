@@ -2,10 +2,18 @@ console.log("Search Page");
 
 function doSearch(ingredients) {
     if (ingredients == "") {
-        alert("Must include an input to search by.");
-        return;
+        
+        // If running in node, mocha does not recognize alert message.
+        if (typeof window == "undefined") {
+            return;
+        } else {
+            alert("Must include an input to search by.");
+            return;
+        }
     }
     let url = "/search/ingredients/" + ingredients;
+    
+    // Returns URL for testing if ran in node.
     if (typeof window == "undefined") {
         return url;
     } else {
@@ -19,6 +27,8 @@ function beginSearch() {
         doSearch(ingredients);
     });
 }
+
+// Defines if app is running in node or browser.
 if (typeof window == "undefined") {
     exports.doSearch = doSearch;
 } else {

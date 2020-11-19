@@ -1,29 +1,29 @@
 h1 {
-  font-family: Comic Sans MS;
-  font-size: 50px;
-  font-variant: small-caps;
-  text-align: center;
-  color: black;
+    font-family: Comic Sans MS;
+    font-size: 50px;
+    font-variant: small-caps;
+    text-align: center;
+    color: black;
 }
 
 body {
-  background-color: salmon;
-  font-family: Comic Sans MS;
+    background-color: salmon;
+    font-family: Comic Sans MS;
 }
 
 
 .card {
-  background-color: seashell;
-  font-family: "Comic Sans MS";
-  font-weight: bold;
-  text-align: justify;
-  box-shadow: 0 20px 50px 0 rgba(0,0,2,4);
-  width: 90%;
-  margin: 20px;
+    background-color: seashell;
+    font-family: "Comic Sans MS";
+    font-weight: bold;
+    text-align: justify;
+    box-shadow: 0 20px 50px 0 rgba(0,0,2,4);
+    width: 90%;
+    margin: 20px;
 }
 
 img {
-  height: 350px;
-  width: 500px;
-  border-radius: 25px;
+    height: 350px;
+    width: 500px;
+    border-radius: 25px;
 }

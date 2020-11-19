@@ -10,7 +10,7 @@ describe("do actions on search page", function() {
     
     // Tests that the search function returns nothing in the case of a blank search input.
     describe("conduct blank search", function() {
-        it("should return /search", function() {
+        it("should return to exit out of function and stay in page", function() {
             expect(search.doSearch("")).to.equal(undefined);
         });
     });
